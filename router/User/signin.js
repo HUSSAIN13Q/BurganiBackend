@@ -11,14 +11,14 @@ const { BadRequestError } = require("../../errors");
 const router = express.Router();
 
 const validators = [
-  body("username").not().isEmpty().withMessage("Username is required"),
+  body("email").not().isEmpty().withMessage("email is required"),
   body("password").trim().not().isEmpty().withMessage("Password is required"),
 ];
 
 router.post("/signin", validators, validateRequest, async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ email });
 
   if (!user) return next(BadRequestError("Invalid credentials"));
 
@@ -27,12 +27,22 @@ router.post("/signin", validators, validateRequest, async (req, res, next) => {
   if (!passwordsMatch) return next(BadRequestError("Invalid credentials"));
 
   const token = jwt.sign(
-    { id: user.id, username: user.username },
+    { id: user.id, email: user.email },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRATION }
   );
 
-  res.status(200).json({ token });
+  res.status(200).json({
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      location: user.location,
+      title: user.title,
+    },
+  });
 });
 
 module.exports = { signinRouter: router };
