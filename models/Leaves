@@ -3,7 +3,7 @@ const { model, Schema } = require("mongoose");
 const leaveSchema = Schema(
   {
     user_id: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -16,8 +16,8 @@ const leaveSchema = Schema(
       enum: ["Pending", "Approved", "Rejected"],
       default: "Pending",
     },
-    manager_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    hr_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    manager_id: { type: Schema.Types.ObjectId, ref: "User" },
+    hr_id: { type: Schema.Types.ObjectId, ref: "User" },
     medical_report: String,
   },
   { timestamps: true }
