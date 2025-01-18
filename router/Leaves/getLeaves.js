@@ -1,5 +1,5 @@
 const express = require("express");
-const Leave = require("../../models/Leaves");
+const Leave = require("../../models/Leaves.js");
 const User = require("../../models/User");
 const router = express.Router();
 const { body } = require("express-validator");

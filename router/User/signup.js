@@ -40,7 +40,7 @@ router.post("/signup", validators, validateRequest, async (req, res, next) => {
   });
 
   const token = jwt.sign(
-    { id: user.id, email: user.email },
+    { id: user.id, email: user.email, role: user.role },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRATION }
   );

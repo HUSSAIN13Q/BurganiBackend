@@ -1,6 +1,7 @@
 const currentUser = require("./currentUser");
 const handleErrors = require("./handleErrors");
 const requireAuth = require("./requireAuth");
+const requireHR = require("./requireHR");
 const validateRequest = require("./validateRequest");
 
 module.exports = {
@@ -8,4 +9,5 @@ module.exports = {
   validateRequest,
   currentUser,
   requireAuth,
+  requireHR,
 };
