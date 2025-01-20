@@ -9,6 +9,7 @@ const { NotFoundError } = require("./errors");
 const { authRouter } = require("./router/User");
 const { LeaveRouter } = require("./router/Leaves");
 const { WorkshopRouter } = require("./router/ Workshop");
+const { CommunityRouter } = require("./router/Community");
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,7 @@ app.use(currentUser);
 app.use("/auth", authRouter);
 app.use("/leaves", LeaveRouter);
 app.use("/workshop", WorkshopRouter);
+app.use("/community", CommunityRouter);
 /**
  * Not Found Catchall
  */
