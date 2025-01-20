@@ -7,7 +7,7 @@ const { requireAuth, validateRequest } = require("../../middleware");
 
 router.post(
   "/",
-  requireAuth,
+
   [
     body("type").isString().withMessage("Leave type is required"),
     body("start_date").isISO8601().withMessage("Valid start date is required"),

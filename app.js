@@ -40,4 +40,3 @@ app.all("*", (req) => {
 app.use(handleErrors);
 
 module.exports = app;
-app.use;

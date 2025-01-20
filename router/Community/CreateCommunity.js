@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { body } = require("express-validator");
 const Community = require("../../models/communities/Community");
+const { requireAuth } = require("../../middleware");
 
 router.post(
   "/",
+  requireAuth,
   [
     body("title").isString().withMessage("Title is required"),
     body("description").isString().withMessage("Description is required"),
@@ -16,9 +18,10 @@ router.post(
       const community = new Community({
         title,
         description,
-        created_by: req.user._id,
-        members: [req.user._id],
+        created_by: req.user.id,
+        members: [req.user.id],
       });
+      console.log("Community Data:", community);
 
       await community.save();
 
