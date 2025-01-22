@@ -10,6 +10,7 @@ const { authRouter } = require("./router/User");
 const { LeaveRouter } = require("./router/Leaves");
 const { WorkshopRouter } = require("./router/ Workshop");
 const { CommunityRouter } = require("./router/Community");
+const { AttendanceRouter } = require("./router/Attendance");
 
 const app = express();
 app.use(cors());
@@ -27,6 +28,7 @@ app.use("/auth", authRouter);
 app.use("/leaves", LeaveRouter);
 app.use("/workshop", WorkshopRouter);
 app.use("/community", CommunityRouter);
+app.use("/attendance", AttendanceRouter);
 /**
  * Not Found Catchall
  */
