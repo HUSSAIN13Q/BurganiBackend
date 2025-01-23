@@ -8,8 +8,8 @@ const leaveSchema = Schema(
       required: true,
     },
     type: { type: String, enum: ["Sick", "Annual"], required: true },
-    start_date: { type: Date, required: true },
-    end_date: { type: Date, required: true },
+    start_date: { type: String, required: true },
+    end_date: { type: String, required: true },
     description: String,
     status: {
       type: String,

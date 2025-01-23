@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     const communities = await Community.find({})
       .populate("created_by", "name email")
       .select("title description members created_by createdAt")
-      .sort({ createdAt: -1 }); // Sort by latest communities
+      .sort({ createdAt: -1 });
 
     res.status(200).json({ communities });
   } catch (error) {
