@@ -3,12 +3,11 @@ const User = require("../../models/User");
 const Workshop = require("../../models/ Workshop");
 const router = express.Router();
 const { body } = require("express-validator");
-const { requireAuth, requireHR, validateRequest } = require("../../middleware");
+const { requireAuth, validateRequest } = require("../../middleware");
 
 router.post(
   "/",
   requireAuth,
-  requireHR,
   [
     body("title").isString().withMessage("Title is required"),
     body("description").isString().withMessage("Description is required"),
