@@ -41,6 +41,7 @@ router.post("/signin", validators, validateRequest, async (req, res, next) => {
       role: user.role,
       location: user.location,
       title: user.title,
+      department: user.department,
     },
   });
 });

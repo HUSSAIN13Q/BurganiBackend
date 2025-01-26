@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     role: { type: String, enum: ["Employee", "Manager", "HR"], required: true },
     location: String,
     title: String,
+    department: String,
   },
   { timestamps: true }
 );

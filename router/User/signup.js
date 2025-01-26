@@ -82,10 +82,11 @@ const validators = [
     .withMessage("Role is invalid"),
   body("location").optional().isString(),
   body("title").optional().isString(),
+  body("department").optional().isString(),
 ];
 
 router.post("/signup", validators, validateRequest, async (req, res, next) => {
-  const { password, name, email, role, location, title } = req.body;
+  const { password, name, email, role, location, title, department } = req.body;
 
   const existingUser = await User.findOne({ email });
 
@@ -98,6 +99,7 @@ router.post("/signup", validators, validateRequest, async (req, res, next) => {
     role,
     location,
     title,
+    department,
   });
 
   await LeaveBalance.create({
