@@ -35,7 +35,7 @@ const { requireAuth } = require("../../middleware");
 //     res.status(400).json({ message: error.message });
 //   }
 // });
-router.post("/:workshop_id", requireAuth, async (req, res) => {
+router.post("/:workshop_id/apply", requireAuth, async (req, res) => {
   try {
     const { workshop_id } = req.params;
     const user_id = req.user.id;
