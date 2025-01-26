@@ -39,14 +39,14 @@ router.post("/checkIn", requireAuth, async (req, res) => {
 
     if (existingAttendance) {
       return res
-        .status(400)
+        .status(405)
         .json({ message: "You have already checked in today" });
     }
 
     // Create attendance record
     const attendance = await Attendance.create({
       user_id: req.user.id,
-      check_in_time: new Date(),
+      check_in_time: new Date().toISOString(),
       date: today,
       location: { latitude, longitude },
     });
