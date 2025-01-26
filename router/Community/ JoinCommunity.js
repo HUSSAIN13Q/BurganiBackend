@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Community = require("../../models/communities/Community");
 
-router.post("/community_id", async (req, res) => {
+router.post("/:community_id/apply", async (req, res) => {
   try {
-    const { community_id } = req.body;
-
+    const { community_id } = req.params;
+    const user_id = req.user.id;
+    console.log(req.params);
     const community = await Community.findById(community_id);
 
     if (!community) {
