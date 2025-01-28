@@ -5,23 +5,19 @@ const User = require("../../models/User");
 const Leave = require("../../models/Leaves");
 const { requireAuth } = require("../../middleware");
 
-// Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Individual Employee Insights Endpoint
 router.get("/insights/:employeeId", requireAuth, async (req, res) => {
   try {
     const { employeeId } = req.params;
 
-    // Fetch the employee details
     const employee = await User.findById(employeeId);
     if (!employee || employee.role !== "Employee") {
       return res.status(404).json({ message: "Employee not found" });
     }
 
-    // Fetch employee leave data
     const approvedLeaves = await Leave.countDocuments({
       user_id: employeeId,
       status: "Approved",
@@ -32,7 +28,6 @@ router.get("/insights/:employeeId", requireAuth, async (req, res) => {
       status: "Pending",
     });
 
-    // Construct AI prompt
     const messages = [
       {
         role: "system",
@@ -53,7 +48,6 @@ router.get("/insights/:employeeId", requireAuth, async (req, res) => {
       },
     ];
 
-    // Call GPT-3.5-Turbo
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages,

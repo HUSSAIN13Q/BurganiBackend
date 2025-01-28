@@ -6,7 +6,7 @@ const { body } = require("express-validator");
 
 router.get("/all", async (req, res) => {
   try {
-    const leaves = await Leave.find();
+    const leaves = await Leave.find().populate("user_id", "name");
     res.status(200).json(leaves);
   } catch (error) {
     console.error(error);

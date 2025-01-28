@@ -175,7 +175,7 @@ router.get("/recommendation", requireAuth, async (req, res) => {
           
           Recommend the best time for them to take their vacation by combining leave days with public holidays 
           to maximize time off. If a public holiday already has a high overlap of employees on leave with %, suggest alternative days.
-          Format the message as bullet points for clarity.
+          Format the message as bullet points for clarity and remove  the **.
           `,
       },
     ];
